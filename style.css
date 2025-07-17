@@ -1,0 +1,65 @@
+* {
+    font-size: 20px;
+    line-height: 1.5rem;
+
+}
+
+.container {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+    min-width: 20%;
+}
+
+li {
+    cursor: pointer;
+    display: block;
+    min-width: 50px;
+    font-weight: 100;
+}
+i {
+    display: block;
+}
+
+.context-menu {
+    background-color: rgb(69, 66, 66);
+    color: white;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.context-menu > li:hover {
+    background-color: antiquewhite;
+    color: black;
+    list-style: none;
+}
+
+.list > * {
+    background-color: beige;
+}
+
+li > a{
+    list-style: none;
+    display: block;
+    min-width: 50px;
+    padding: 5px;
+}
+
+.item.close > ul {
+    display: none;
+}
+
+.highlight {
+    background-color: rgb(229, 136, 15) !important;
+}
+span {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
