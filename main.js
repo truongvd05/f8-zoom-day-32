@@ -6,10 +6,9 @@ const context = $(".context-menu");
 const input = $("input");
 const body = $("body");
 
-console.log(input);
-
 let selected = null;
 let rect = null;
+let itemDlete = null;
 
 const tree = [
     {
@@ -164,6 +163,7 @@ function clickItem() {
             e.stopPropagation();
             selected = e.target;
             rect = selected.getBoundingClientRect();
+            itemDlete = e.target.closest("li");
             context.hidden = false;
             Object.assign(context.style, {
                 top: 4 + e.clientY + "px",
@@ -203,8 +203,7 @@ context.addEventListener("click", function (e) {
         input.style.zIndex = 999;
     }
     if (e.target.closest(".delete")) {
-        console.log(selected);
-        selected.remove();
+        itemDlete.remove();
     }
     context.hidden = true;
 });
@@ -217,6 +216,12 @@ input.addEventListener("keydown", function (e) {
 input.addEventListener("blur", function () {
     input.hidden = true;
     selected.textContent = input.value;
+});
+
+document.addEventListener("click", function (e) {
+    if (body) {
+        context.hidden = true;
+    }
 });
 
 start(tree, list);
