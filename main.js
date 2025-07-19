@@ -133,8 +133,14 @@ function start(tree, listItem) {
         const span = document.createElement("span");
         const li = document.createElement("li");
         li.className = "item close";
-        li.appendChild(span);
+        let a = createList(item);
         span.innerText = item.name;
+        if (a) {
+            li.append(a, span);
+        } else {
+            li.appendChild(span);
+        }
+
         listItem.append(li);
         if (item.type === "folder" && item.children) {
             const ul = document.createElement("ul");
@@ -142,6 +148,15 @@ function start(tree, listItem) {
             li.appendChild(ul);
             start(item.children, ul);
         }
+    }
+}
+
+function createList(item) {
+    switch (item.type) {
+        case "folder":
+            const i = document.createElement("i");
+            i.className = "far fa-folder-open";
+            return i;
     }
 }
 
@@ -176,7 +191,7 @@ function clickItem() {
             e.stopImmediatePropagation();
             item.classList.toggle("close");
             const span = item.querySelector("span");
-
+            context.hidden = true;
             if (item) {
                 document
                     .querySelector("span.highlight")
@@ -202,7 +217,7 @@ context.addEventListener("click", function (e) {
         input.style.border = "1px solid #ccc";
         input.style.zIndex = 999;
     }
-    if (e.target.closest(".delete")) {
+    if (e.target.closest(".delete") && confirm("Bạn có chắc chắn xóa?")) {
         itemDlete.remove();
     }
     context.hidden = true;
