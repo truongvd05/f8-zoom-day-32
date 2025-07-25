@@ -130,17 +130,19 @@ const tree = [
 function start(tree, listItem) {
     for (let item of tree) {
         if (!item.type) return;
+        const div = document.createElement("div");
         const span = document.createElement("span");
         const li = document.createElement("li");
+        div.className = "wrap-item";
         li.className = "item close";
         let a = createList(item);
         span.innerText = item.name;
         if (a) {
-            li.append(a, span);
+            div.append(a, span);
         } else {
-            li.appendChild(span);
+            div.appendChild(span);
         }
-
+        li.appendChild(div);
         listItem.append(li);
         if (item.type === "folder" && item.children) {
             const ul = document.createElement("ul");
@@ -162,7 +164,7 @@ function createList(item) {
 
 function clickItem() {
     const li = document.querySelectorAll(".item");
-    const spans = document.querySelectorAll("span");
+    const spans = document.querySelectorAll(".wrap-item");
     spans.forEach((item) => {
         item.addEventListener("mouseover", function (e) {
             e.stopPropagation();
@@ -194,9 +196,9 @@ function clickItem() {
             context.hidden = true;
             if (item) {
                 document
-                    .querySelector("span.highlight")
+                    .querySelector(".item.highlight")
                     ?.classList.remove("highlight");
-                span.classList.add("highlight");
+                item.classList.add("highlight");
             }
         });
     });

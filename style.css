@@ -52,16 +52,21 @@ li > a{
     display: none;
 }
 
-.highlight {
+.highlight > .wrap-item {
     background-color: rgb(229, 136, 15) !important;
 }
+
 span {
     display: inline-block;
     user-select: none;
-    width: calc(100% - 23px);
+    width: 100%;
 }
 
 a {
     text-decoration: none;
     color: white;
+}
+
+.wrap-item {
+    display: flex;
 }
